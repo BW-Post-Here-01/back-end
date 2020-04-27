@@ -18,6 +18,8 @@
   "homepage": "https://github.com/BW-Post-Here-01/back-end#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "helmet": "^3.22.0"
+    "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.0"
   }
 }
