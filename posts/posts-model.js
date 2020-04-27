@@ -5,6 +5,8 @@ module.exports = {
     findBy, 
     findById, 
     add,
+    remove,
+    update, 
 }
 
 function find(){
@@ -21,5 +23,15 @@ function findById(id){
 
 async function add(post){
     const [id] = await db("posts").insert(post, "id"); 
+    return findById(id); 
+}
+
+function remove(id){
+    return db("posts").where({id}).del(); 
+}
+
+function update(id, body){
+    let { post_title, post_text } = body; 
+    db("posts").where({ id }).update({ post_title, post_text }); 
     return findById(id); 
 }
