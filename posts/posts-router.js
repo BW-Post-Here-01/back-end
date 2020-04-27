@@ -1,4 +1,7 @@
-const router = require("express").Router(); 
+//const router = require("express").Router(); 
+const express = require('express');
+const router = express.Router();
+
 
 const Posts = require("./posts-model.js"); 
 

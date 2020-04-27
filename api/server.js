@@ -20,5 +20,4 @@ server.get("/", (req, res) => {
     res.status(200).json({ message: `Welcome to Post Here Subreddit App!`}); 
 })
 
-
 module.exports = server; 
