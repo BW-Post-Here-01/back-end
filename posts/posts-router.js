@@ -1,9 +1,17 @@
 const router = require("express").Router(); 
 
-const db = require("../database/dbConfig.js"); 
+const Posts = require("./posts-model.js"); 
 
-router.get("/", (req, res) => {
-    return db("posts"); 
+router.get('/', (req, res) => {
+    Posts.find()
+        .then(posts => {
+            console.log(posts); 
+            res.status(200).json({ posts }); 
+        })
+        .catch(error => {
+            console.log(error); 
+            res.status(500).json({ errorMessage: error.message }); 
+        })
 })
 
 module.exports = router; 
