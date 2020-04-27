@@ -13,4 +13,10 @@ server.use(helmet());
 server.use("/api/auth", authRouter); 
 //server.use("/api/posts", authenticator, postsRouter); 
 
+server.get("/", (req, res) => {
+    console.log(`Welcome to Post Here Subreddit App!`); 
+    res.status(200).json({ message: `Welcome to Post Here Subreddit App!`}); 
+})
+
+
 module.exports = server; 
