@@ -13,13 +13,16 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.0",
     "node-pre-gyp": "^0.14.0",
-    "nodemon": "^2.0.3",
     "pg": "^8.0.3",
     "sqlite3": "^4.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "start": "node index.js", 
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
