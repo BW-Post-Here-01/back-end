@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router(); 
 
 const Users = require('./users-model.js'); 
+const Posts = require("../posts/posts-model.js"); 
 
 router.get('/:id', (req, res) => {
     let id = req.params.id; 
@@ -48,13 +49,13 @@ router.delete('/:id', (req, res) => {
 
 // POSTS
 
-const Posts = require("./posts-model.js"); 
-
-router.get('/', (req, res) => {
-    Posts.find()
-        .then(posts => {
-            console.log(posts); 
-            res.status(200).json({ posts }); 
+router.get('/:id/posts', (req, res) => {
+    let id = req.params.id; 
+    
+    Posts.findByUserId(id)
+        .then(results => {
+            console.log(results); 
+            res.status(200).json({ results }); 
         })
         .catch(error => {
             console.log(error); 
@@ -62,10 +63,11 @@ router.get('/', (req, res) => {
         })
 })
 
-router.get('/:id/', (req, res) => {
+router.get('/:id/posts/:post_id/', (req, res) => {
     let id = req.params.id; 
+    let post_id = req.params.post_id; 
 
-    Posts.findById(id)
+    Posts.findByPostId(post_id)
         .then(response => {
             console.log(response); 
             res.status(200).json({ response }); 
@@ -92,11 +94,12 @@ router.post('/:id/posts', (req, res) => {
         })
 }); 
 
-router.put('/:id', (req, res) => {
-    let id = req.params.id; 
+router.put('/:id/posts/:post_id', (req, res) => {
+    let id = req.params.id;
+    let post_id = req.params.post_id;  
     let post = req.body; 
 
-    Posts.update(id, post)
+    Posts.update(post_id, post)
         .then(response => {
             console.log(response); 
             res.status(200).json({ response }); 
@@ -107,13 +110,14 @@ router.put('/:id', (req, res) => {
         })
 }); 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id/posts/:post_id', (req, res) => {
     let id = req.params.id; 
+    let post_id = req.params.post_id; 
 
-    Posts.remove(id)
+    Posts.remove(post_id)
         .then(response => {
             console.log(response); 
-            res.status(200).json({ message: `Post Id#${id} was successfully deleted!` }); 
+            res.status(200).json({ message: `Post Id#${post_id} was successfully deleted!` }); 
         })
         .catch(error => {
             console.log(error); 

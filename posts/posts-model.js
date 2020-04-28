@@ -1,23 +1,23 @@
 const db = require("../database/dbConfig.js"); 
 
 module.exports = {
-    find, 
+    findByUserId, 
     findBy, 
-    findById, 
+    findByPostId, 
     add,
     remove,
     update, 
-}
-
-function find(){
-    return db("posts"); 
 }
 
 function findBy(filter){
     return db("posts").where(filter); 
 }
 
-function findById(id){
+function findByUserId(id){
+    return db("posts").where({ user_id: id }); 
+}
+
+function findByPostId(id){
     return db("posts").where({ id }).first(); 
 }
 
