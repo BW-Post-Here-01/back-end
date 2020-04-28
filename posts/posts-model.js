@@ -23,7 +23,7 @@ function findByPostId(id){
 
 async function add(post){
     const [id] = await db("posts").insert(post, "id"); 
-    return findById(id); 
+    return findByPostId(id); 
 }
 
 function remove(id){

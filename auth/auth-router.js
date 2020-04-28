@@ -32,7 +32,7 @@ router.post("/login", (req, res) => {
             let id = user.id; 
             if(user && bcrypt.compareSync(password, user.password)){
                 const token = generateToken(user); 
-                res.status(200).json({ message: "Logged in!", token, id }); 
+                res.status(200).json({ message: "Logged in!", token, user }); 
             } else { 
                 res.status(401).json({ message: "Incorrect password!" }); 
             } 
