@@ -99,10 +99,24 @@ router.put('/:id/posts/:post_id', (req, res) => {
     let post_id = req.params.post_id;  
     let post = req.body; 
 
-    Posts.update(post_id, post)
+    console.log(post_id, id, typeof post_id); 
+    
+    Posts.findByPostId(post_id)
         .then(response => {
-            console.log(response); 
-            res.status(200).json({ response }); 
+            console.log("This is the response length: ", response.length); 
+            if(response.length){
+                Posts.update(post_id, post)
+                .then(response => {
+                    console.log(response); 
+                    res.status(200).json({ response }); 
+                })
+                .catch(error => {
+                    console.log(error); 
+                    res.status(500).json({ errorMessage: error.message }); 
+                })
+            } else {
+                res.status(404).json({ errorMessage: "Post does not exist!" }); 
+            }
         })
         .catch(error => {
             console.log(error); 

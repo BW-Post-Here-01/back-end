@@ -18,7 +18,10 @@ function findByUserId(id){
 }
 
 function findByPostId(id){
-    return db("posts").where({ id }).first(); 
+    console.log("post id: ", id); 
+    return db("posts").where({ id }); 
+
+    //return db("posts").where({ id }).first(); 
 }
 
 async function add(post){
@@ -33,5 +36,5 @@ function remove(id){
 function update(id, body){
     let { post_title, post_text } = body; 
     db("posts").where({ id }).update({ post_title, post_text }); 
-    return findById(id); 
+    return findByPostId(id); 
 }
