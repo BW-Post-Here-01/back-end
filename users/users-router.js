@@ -105,9 +105,10 @@ router.put('/:id/posts/:post_id', (req, res) => {
         .then(response => {
             console.log("This is the response length: ", response.length); 
             if(response.length){
+                console.log(post); 
                 Posts.update(post_id, post)
                 .then(response => {
-                    console.log(response); 
+                    console.log('Response: ', response); 
                     res.status(200).json({ response }); 
                 })
                 .catch(error => {

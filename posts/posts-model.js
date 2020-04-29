@@ -33,8 +33,8 @@ function remove(id){
     return db("posts").where({id}).del(); 
 }
 
-function update(id, body){
+async function update(id, body){
     let { post_title, post_text } = body; 
-    db("posts").where({ id }).update({ post_title, post_text }); 
+    await db('posts').where({ id }).update({ post_title, post_text }); 
     return findByPostId(id); 
 }
